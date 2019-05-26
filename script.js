@@ -1,25 +1,63 @@
-function initQuestion(questionNumber){
+// START
+function initStart(){
+	questionNumber = 0;
+	punkteIch = 0;
+	punkteGegner = 0;
+	
+	generateStartText();
+	generateStartButton();
+}
+
+function generateStartText(){
+	var divTitle = document.createElement('DIV');
+	var divText = document.createElement('DIV');
+	
+	divTitle.innerHTML = '<h1><b>Konfliktlösung</b></h1>';
+	divText.innerHTML = 'Beantworten Sie die Fragen und finden Sie den passenden Weg zur Lösung Ihres Konfliktes!';
+	
+	divStartText.appendChild(divTitle);
+	divStartText.appendChild(divText);
+}
+
+function generateStartButton(){
+	var btnStart = document.createElement('INPUT');
+	btnStart.type = 'button';
+	btnStart.value = 'Start!';
+	btnStart.className = 'btn btn-primary';
+	btnStart.style.width = '150px';
+	btnStart.onclick = btnStartHandler;
+	
+	divStartButton.appendChild(btnStart);
+}
+
+function btnStartHandler(){
+	removeStart();
+	initQuestion();
+}
+
+// FRAGEN
+function initQuestion(){
 	if(questionNumber < 5){
 		var questionText;
 		switch(questionNumber){
 			case 0:
-				questionText = "Wie hoch sind Ihre Durchsetzungschancen?";
+				questionText = "Wie hoch sind Ihre jeweiligen Durchsetzungschancen?";
 				break;
 			case 1:
 				questionText = "Wie wichtig ist das Thema für Sie beide?";
 				break;
 			case 2:
-				questionText = "Wie wichtig sind Ihnen die Ziele?";
+				questionText = "Wie wichtig sind die Ziele für Sie beide?";
 				break;
 			case 3:
-				questionText = "Welche Partei ist stärker?";
+				questionText = "Wie viel Zeit und Energie sind jeweils vorhanden?";
 				break;
 			case 4:
 				questionText = "Ist die Einigung auf einen Kompromiss wahrscheinlich?";
 				break;
 		}
 		generateQuestionText(questionText);
-		generateQuestionSlider(questionNumber);
+		generateQuestionSlider();
 	} else {
 		initErgebnis();
 	}
@@ -30,7 +68,7 @@ function generateQuestionText(questionText){
 	divQuestionText.innerHTML = questionText;
 }
 
-function generateQuestionSlider(questionNumber){
+function generateQuestionSlider(){
 	if(questionNumber == 4){
 		var btnJa = document.createElement('INPUT');
 		btnJa.type = 'button';
@@ -48,16 +86,34 @@ function generateQuestionSlider(questionNumber){
 		divQuestionSlider.appendChild(btnJa);
 		divQuestionSlider.appendChild(btnNein);
 	} else {
-		var slider = document.createElement('FORM');
-	slider.className = 'range-field';
-	var input = document.createElement('INPUT');
-	input.type = 'range';
-	input.id = 'slider';
-	input.min = '1';
-	input.max = '9';
-	input.value = '5';
+		
+	var slider1 = document.createElement('FORM');
+	slider1.className = 'range-field';
+	var input1 = document.createElement('INPUT');
+	input1.type = 'range';
+	input1.id = 'slider1';
+	input1.min = '1';
+	input1.max = '9';
+	input1.value = '5';
 	
-	slider.appendChild(input);
+	slider1.appendChild(input1);
+	
+	var slider1Text = document.createElement('DIV');
+	slider1Text.innerHTML = '<b>Sie</b>';
+	
+	var slider2 = document.createElement('FORM');
+	slider2.className = 'range-field';
+	var input2 = document.createElement('INPUT');
+	input2.type = 'range';
+	input2.id = 'slider2';
+	input2.min = '1';
+	input2.max = '9';
+	input2.value = '5';
+	
+	slider2.appendChild(input2);
+	
+	var slider2Text = document.createElement('DIV');
+	slider2Text.innerHTML = '<b>Gegenpartei</b>';
 	
 	var divSliderText = document.createElement('DIV');
 	
@@ -67,23 +123,25 @@ function generateQuestionSlider(questionNumber){
 			sliderText = "niedrig \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 hoch";
 			break;
 		case 1:
-			sliderText = "Gegner \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Ich";
+			sliderText = "nicht wichtig \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 sehr wichtig";
 			break;
 		case 2:
-			sliderText = "nicht wichtig \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 wichtig";
+			sliderText = "nicht wichtig \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 sehr wichtig";
 			break;
 		case 3:
-			sliderText = "Gegner \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Ich";
-			break;
-		case 4:
-			sliderText = "unwahrscheinlich \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 sehr wahrscheinlich";
+			sliderText = "wenig \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 viel";
 			break;
 	}
 	divSliderText.innerHTML = sliderText;
 	
 	divQuestionSlider.appendChild(divSliderText);
 	
-	divQuestionSlider.appendChild(slider);
+	divQuestionSlider.appendChild(slider1Text);
+	divQuestionSlider.appendChild(slider1);
+	divQuestionSlider.appendChild(slider2Text);
+	divQuestionSlider.appendChild(slider2);
+	
+	
 	
 	generateQuestionButton();
 	}
@@ -110,8 +168,8 @@ function btnWeiterHandler(){
 }
 
 function btnJaHandler(){
-	punkteIch = punkteIch + 5;
-	punkteGegner = punkteGegner + 5;
+	punkteIch = punkteIch + 9;
+	punkteGegner = punkteGegner + 9;
 	console.log('ICH: ' + punkteIch);
 	console.log('GEGNER: ' + punkteGegner);
 	btnWeiterHandler();
@@ -126,9 +184,8 @@ function btnNeinHandler(){
 }
 
 function auswerten(){
-	var vergebenePunkte = document.getElementById('slider').value;
-	punkteIch = punkteIch + (vergebenePunkte-0);
-	punkteGegner = punkteGegner + (10-vergebenePunkte);
+	punkteIch = punkteIch + (document.getElementById('slider1').value-0);
+	punkteGegner = punkteGegner + (document.getElementById('slider2').value-0);
 	console.log('ICH: ' + punkteIch);
 	console.log('GEGNER: ' + punkteGegner);
 }
@@ -140,6 +197,7 @@ function initErgebnis(){
 	generateAuswertungTable();
 	ergebnisAnzeigen();
 	generateLegende();
+	generateErgebnisButton();
 }
 
 function durchschnittAuswertung(){
@@ -261,6 +319,32 @@ function generateLegende(){
 	divErgebnisLegende.appendChild(divErgebnis);
 }
 
+function generateErgebnisButton(){
+	var btnMenu = document.createElement('INPUT');
+	btnMenu.type = 'button';
+	btnMenu.className = 'btn btn-secondary';
+	btnMenu.value = 'Menu';
+	btnMenu.onclick = btnMenuHandler;
+	
+	divErgebnisButton.appendChild(btnMenu);
+}
+
+function btnMenuHandler(){
+	removeErgebnis();
+	initStart();
+}
+// REMOVES
+
+function removeStart(){
+	while(divStartText.firstChild){
+		divStartText.removeChild(divStartText.firstChild);
+	}
+	
+	while(divStartButton.firstChild){
+		divStartButton.removeChild(divStartButton.firstChild);
+	}
+}
+
 function removeQuestion(){
 	while(divQuestionText.firstChild){
 		divQuestionText.removeChild(divQuestionText.firstChild);
@@ -275,7 +359,24 @@ function removeQuestion(){
 	}
 }
 
+function removeErgebnis(){
+	while(divErgebnisTabelle.firstChild){
+		divErgebnisTabelle.removeChild(divErgebnisTabelle.firstChild);
+	}
+	
+	while(divErgebnisLegende.firstChild){
+		divErgebnisLegende.removeChild(divErgebnisLegende.firstChild);
+	}
+	
+	while(divErgebnisButton.firstChild){
+		divErgebnisButton.removeChild(divErgebnisButton.firstChild);
+	}
+}
+
 var divStart = document.getElementById('start');
+var divStartText = document.getElementById('startText');
+var divStartButton = document.getElementById('startButton');
+
 var divQuestion = document.getElementById('question');
 var divQuestionText = document.getElementById('questionText');
 var divQuestionSlider = document.getElementById('questionSlider');
@@ -285,14 +386,15 @@ var divErgebnisTabelle = document.getElementById('ergebnisTabelle');
 var divErgebnisLegende = document.getElementById('ergebnisLegende');
 var divErgebnisButton = document.getElementById('ergebnisButton');
 
-var questionNumber = 0;
-var punkteIch = 0;
-var punkteGegner = 0;
+var questionNumber;
+var punkteIch;
+var punkteGegner;
 
 var durchschnittIch;
 var durchschnittGegner;
 
-initQuestion(questionNumber);
+initStart();
+//initQuestion(questionNumber);
 
 
 
