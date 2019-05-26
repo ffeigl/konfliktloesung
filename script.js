@@ -170,24 +170,18 @@ function btnWeiterHandler(){
 function btnJaHandler(){
 	punkteIch = punkteIch + 9;
 	punkteGegner = punkteGegner + 9;
-	console.log('ICH: ' + punkteIch);
-	console.log('GEGNER: ' + punkteGegner);
 	btnWeiterHandler();
 }
 
 function btnNeinHandler(){
 	punkteIch = punkteIch + 1;
 	punkteGegner = punkteGegner + 1;
-	console.log('ICH: ' + punkteIch);
-	console.log('GEGNER: ' + punkteGegner);
 	btnWeiterHandler();
 }
 
 function auswerten(){
 	punkteIch = punkteIch + (document.getElementById('slider1').value-0);
 	punkteGegner = punkteGegner + (document.getElementById('slider2').value-0);
-	console.log('ICH: ' + punkteIch);
-	console.log('GEGNER: ' + punkteGegner);
 }
 
 // ERGEBNIS
@@ -333,6 +327,7 @@ function btnMenuHandler(){
 	removeErgebnis();
 	initStart();
 }
+
 // REMOVES
 
 function removeStart(){
@@ -394,8 +389,3 @@ var durchschnittIch;
 var durchschnittGegner;
 
 initStart();
-//initQuestion(questionNumber);
-
-
-
-
