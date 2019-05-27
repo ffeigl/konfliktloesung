@@ -53,7 +53,7 @@ function initQuestion(){
 				questionText = "Wie viel Zeit und Energie sind jeweils vorhanden?";
 				break;
 			case 4:
-				questionText = "Ist die Einigung auf einen Kompromiss wahrscheinlich?";
+				questionText = "Halten Sie eine Einigung auf einen Kompromiss für wahrscheinlich?";
 				break;
 		}
 		generateQuestionText(questionText);
@@ -168,8 +168,8 @@ function btnWeiterHandler(){
 }
 
 function btnJaHandler(){
-	punkteIch = punkteIch + 9;
-	punkteGegner = punkteGegner + 9;
+	punkteIch = punkteIch + 5;
+	punkteGegner = punkteGegner + 5;
 	btnWeiterHandler();
 }
 
