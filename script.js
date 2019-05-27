@@ -243,26 +243,31 @@ function tabelleBeschriften(){
 	var nachgeben = document.getElementById('ergebnis01');
 	nachgeben.style.border = '1px solid rgb(2, 63, 240)';
 	nachgeben.style.backgroundColor = 'rgb(2, 63, 240)';
+	nachgeben.style.color = 'white';
 	nachgeben.appendChild(document.createTextNode('1/9'));
 	
 	var zusammen = document.getElementById('ergebnis09');
 	zusammen.style.border = '1px solid rgb(15, 255, 0)';
 	zusammen.style.backgroundColor = 'rgb(15, 255, 0)';
+	zusammen.style.color = 'white';
 	zusammen.appendChild(document.createTextNode('9/9'));
 	
 	var kompromiss = document.getElementById('ergebnis45');
 	kompromiss.style.border = '1px solid rgb(243, 125, 18)';
 	kompromiss.style.backgroundColor = 'rgb(243, 125, 18)';
+	kompromiss.style.color = 'white';
 	kompromiss.appendChild(document.createTextNode('5/5'));
 	
 	var vermeiden = document.getElementById('ergebnis81');
 	vermeiden.style.border = '1px solid gray';
 	vermeiden.style.backgroundColor = 'gray';
+	vermeiden.style.color = 'white';
 	vermeiden.appendChild(document.createTextNode('1/1'));
 	
 	var konkurrieren = document.getElementById('ergebnis89');
 	konkurrieren.style.border = '1px solid rgb(240, 2, 2)';
 	konkurrieren.style.backgroundColor = 'rgb(240, 2, 2)';
+	konkurrieren.style.color = 'white';
 	konkurrieren.appendChild(document.createTextNode('9/1'));
 }
 
