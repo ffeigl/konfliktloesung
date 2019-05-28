@@ -245,30 +245,35 @@ function tabelleBeschriften(){
 	nachgeben.style.backgroundColor = 'rgb(2, 63, 240)';
 	nachgeben.style.color = 'white';
 	nachgeben.appendChild(document.createTextNode('1/9'));
+	nachgeben.addEventListener('click', nachgebenHandler);
 	
 	var zusammen = document.getElementById('ergebnis09');
 	zusammen.style.border = '1px solid rgb(15, 255, 0)';
 	zusammen.style.backgroundColor = 'rgb(15, 255, 0)';
 	zusammen.style.color = 'white';
 	zusammen.appendChild(document.createTextNode('9/9'));
+	zusammen.addEventListener('click', zusammenHandler);
 	
 	var kompromiss = document.getElementById('ergebnis45');
 	kompromiss.style.border = '1px solid rgb(243, 125, 18)';
 	kompromiss.style.backgroundColor = 'rgb(243, 125, 18)';
 	kompromiss.style.color = 'white';
 	kompromiss.appendChild(document.createTextNode('5/5'));
+	kompromiss.addEventListener('click', kompromissHandler);
 	
 	var vermeiden = document.getElementById('ergebnis81');
 	vermeiden.style.border = '1px solid gray';
 	vermeiden.style.backgroundColor = 'gray';
 	vermeiden.style.color = 'white';
 	vermeiden.appendChild(document.createTextNode('1/1'));
+	vermeiden.addEventListener('click', vermeidenHandler);
 	
 	var konkurrieren = document.getElementById('ergebnis89');
 	konkurrieren.style.border = '1px solid rgb(240, 2, 2)';
 	konkurrieren.style.backgroundColor = 'rgb(240, 2, 2)';
 	konkurrieren.style.color = 'white';
 	konkurrieren.appendChild(document.createTextNode('9/1'));
+	konkurrieren.addEventListener('click', komkurrierenHandler);
 }
 
 function ergebnisAnzeigen(){
@@ -306,7 +311,7 @@ function generateLegende(){
 	div11.innerHTML = '1/1: Vermeiden/Flucht';
 	
 	div91.style.color= 'rgb(240, 2, 2)';
-	div91.innerHTML = '9/1: Konkurrieren';
+	div91.innerHTML = '9/1: Machtstrategie/Konkurrieren';
 	
 	divErgebnis.innerHTML = 'Ihr Ergebnis';
 	
@@ -328,13 +333,73 @@ function generateErgebnisButton(){
 	divErgebnisButton.appendChild(btnMenu);
 }
 
+// Eventhandler
 function btnMenuHandler(){
 	removeErgebnis();
 	initStart();
 }
 
-// REMOVES
+function nachgebenHandler(){
+	alert('Nachgeben/Entgegenkommen \n \n' +
+			'   Vorteile: \n' +
+			'       - "soziale Pluspunkte" \n' +
+			'       - Beziehung stärken \n' +
+			'       - schnelles Konfliktende \n \n' +
+			'   Nachteile: \n' + 
+			'       - Verzicht auf eigene Interessen \n' +
+			'       - Verlust von Respekt \n' +
+			'       - Falsche Signale für die Zukunft');
+}
 
+function zusammenHandler(){
+	alert('Zusammenarbeiten \n \n' +
+			'   Vorteile: \n' +
+			'       - Qualitativ hochwertige Entscheidungen \n' +
+			'       - Lernen \n' +
+			'       - Beiderseitige Zustimmung \n' +
+			'       - Bessere Beziehungen \n \n' +
+			'   Nachteile: \n' + 
+			'       - Zeit- und Energieaufwand \n' +
+			'       - Nur, wenn andere Seite mitmacht');
+}
+
+function kompromissHandler(){
+	alert('Kompromisse eingehen \n \n' +
+			'   Vorteile: \n' +
+			'       - Schnelle "gut-genug" Lösungen \n' +
+			'       - Keine Schädigung der Beziehung \n' +
+			'       - Zufriedenstellung beider Parteien \n \n' +
+			'   Nachteile: \n' + 
+			'       - Suboptimale Lösungen \n' +
+			'       - Nachgeben auf beiden Seiten \n' +
+			'       - Nur begrenztes Verständnis der anderen Seite');
+}
+
+function vermeidenHandler(){
+	alert('Vermeiden/Flucht \n \n' +
+			'   Vorteile: \n' +
+			'       - Zeitgewinn (Dinge beruhigen sich oder neue Möglichkeiten) \n' +
+			'       - Vermeiden von Aufwand, Stress und Ärger \n' +
+			'       - Zumindest kurzfristig "heile Welt" bewahren \n \n' +
+			'   Nachteile: \n' + 
+			'       - Verzögerungen in / Beeinträchtigung von Arbeitsprozessen \n' +
+			'       - Geschwächte Kommunikation ("um den heißen Brei herum reden") \n' +
+			'       - Höhere Unzufriedenheit');
+}
+
+function komkurrierenHandler(){
+	alert('Machtstrategie/Konkurrieren \n \n' +
+			'   Vorteile: \n' +
+			'       - Durchsetzung von wichtigen Werten oder Eigeninteressen \n' +
+			'       - Geschwindigkeit \n' +
+			'       - Schutz vor Personen, die nicht-konkurrierendes Verhalten ausnutzen \n \n' +
+			'   Nachteile: \n' + 
+			'       - Strapazierte Beziehungen \n' +
+			'       - Suboptimale Ergebnisse \n' +
+			'       - Eskalation und Stillstand');
+}
+
+// REMOVES
 function removeStart(){
 	while(divStartText.firstChild){
 		divStartText.removeChild(divStartText.firstChild);
